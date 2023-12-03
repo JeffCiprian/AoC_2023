@@ -1,6 +1,7 @@
+#WIP
+
 import time
 true_values = []
-
 
 def convert_to_string(txt_files):
     file = open(txt_files)
@@ -11,10 +12,12 @@ def convert_to_string(txt_files):
     return()
 
 def grab_input_line(calib_value):
-    new_list = []
-    for character in calib_value:
-        if character.isdigit() == True:
-            new_list += character
+    digit_list = []
+    digit_position = []
+    for position in range(len(calib_value)):
+        if calib_value[position].isdigit() == True:
+            digit_list += digit_list
+            digit_position = position
     return(first_and_last(new_list))
 
 def first_and_last(num_list):
@@ -35,3 +38,7 @@ convert_to_string(path_to_file)
 print(process_true_values(true_values))
 end = time.perf_counter()
 print(end - start)
+
+#Need to read the line to see if one etc. are present
+#convert the words into the number it represents
+
