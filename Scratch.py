@@ -1,6 +1,5 @@
-variable = "2one2threefour2one"
+array = [1, 2, 3]
 
-for n in variable:
-    print(variable.rindex(n))
-
+array.append('')
     
+print(array)

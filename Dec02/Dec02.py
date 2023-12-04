@@ -1,6 +1,5 @@
-red = 12
-green = 13
-blue = 14
+answer = 0
+path_to_file = 'Dec02\Dec02_Input.txt'
 
 
 def read_input_file(txt_files):
@@ -10,17 +9,70 @@ def read_input_file(txt_files):
     return(data)
 
 def split_input_game(text_input):
-    game_index = line.split(':')
+    game_index = text_input.split(':')
     return(game_index[0])
+
+def split_input_colours(text_input):
+    game_index = text_input.split(':')
+    return(game_index[1])
 
 def get_game_index(lines):
     game_id = str()
     for n in lines:
         if n.isdigit() == True:
             game_id += n
-    print(int(game_id))
+    return(int(game_id))
 
-path_to_file = 'Dec02\Dec02_Input.txt'
+def comma_split(text_input):
+    colour_event = text_input.split(',')
+    return(colour_event)
+
+def colour_breakdown(lines):
+    colour_seperator = lines.split(';')
+    #colour_seperator2 = colour_seperator.split(',')
+    return(colour_seperator)
+
+def success_check(event_input):
+    check_event = event_input.split(' ')
+    if check_event[1] == 'red':
+        if int(check_event[0]) > 12:
+            return(False)
+    elif check_event[1] == 'blue':
+        if int(check_event[0]) > 14:
+            return(False)
+    elif check_event[1] == 'green':
+        if int(check_event[0]) > 13:
+            return(False)
+
 data = read_input_file(path_to_file)
+
 for line in data:
-    get_game_index(split_input_game(line))
+    event_failure = False
+    for event in colour_breakdown(split_input_colours(line)):
+        for event2 in comma_split(event):
+            check_event = event2.strip()
+            if success_check(check_event) == False:
+                event_failure = True
+    if event_failure == False:
+        answer += get_game_index(split_input_game(line))
+    else:
+        event_failure = False
+print(answer)
+    
+            # print(check_event.split(' '))
+            # if check_event[1] == red:
+            #     if check_event > 12:
+            #         print(failure)
+            # elif check_event[1] == blue:
+            #     if check_event > 14:
+            #         print(failure)
+            # elif check_event[1] == green:
+            #     if check_event > 13:
+            #         print(failure)
+
+#to get the game index if it succeed
+# for line in data:
+#     if game_check(colour_breakdown(split_input_colours(line))) == True: 
+#         answer += get_game_index(split_input_game(line))
+
+
