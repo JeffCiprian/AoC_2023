@@ -1,3 +1,5 @@
+import time
+start = time.perf_counter()
 answer = 0
 path_to_file = 'Dec02\Dec02_Input.txt'
 
@@ -57,22 +59,7 @@ for line in data:
         answer += get_game_index(split_input_game(line))
     else:
         event_failure = False
+
 print(answer)
-    
-            # print(check_event.split(' '))
-            # if check_event[1] == red:
-            #     if check_event > 12:
-            #         print(failure)
-            # elif check_event[1] == blue:
-            #     if check_event > 14:
-            #         print(failure)
-            # elif check_event[1] == green:
-            #     if check_event > 13:
-            #         print(failure)
-
-#to get the game index if it succeed
-# for line in data:
-#     if game_check(colour_breakdown(split_input_colours(line))) == True: 
-#         answer += get_game_index(split_input_game(line))
-
-
+end = time.perf_counter()
+print(end - start)
