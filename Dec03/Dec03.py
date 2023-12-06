@@ -35,10 +35,28 @@ def left_horizontal_check(symbol_location, line_schematics):
     else:
         pass
 
-def lower_horizontal_check(symbol_location, lower_line_schematics):
-    num = ''
-    line_length = len(lower_line_schematics)
-    print(line_length)
+def lower_horizontal_check(symbol_index, lower_line_schematics):
+    clean_line = lower_line_schematics.strip()
+    line_length = len(clean_line)
+    iterator = symbol_index - 1
+    num = lower_line_schematics[symbol_index] if lower_line_schematics[symbol_index].isdigit() else ''
+    while iterator >= 0:
+        if lower_line_schematics[iterator].isdigit():
+            num = lower_line_schematics[iterator] + num
+        elif iterator == symbol_index - 1:
+            break
+        iterator -= 1
+    
+    iterator = symbol_index + 1
+    while iterator < line_length:
+        if lower_line_schematics[iterator].isdigit():
+            num += lower_line_schematics[iterator]
+        elif iterator == symbol_index + 1:
+            break
+        iterator += 1
+    return(num)
+
+    
     #if line_length >= 
     #for n in lower_line_schematics[symbol_location-3:lower_line_schematics+3]:
         #if n.isdigit():
@@ -63,11 +81,9 @@ def find_special_char(engine_schematics):
             if char in special_chars:
                 right_horizontal_check(char_number, line)
                 left_horizontal_check(char_number, line)
-                print(f'{line_number} This is the line before the loop')
-                print(f'{len(engine_schematics) - 1}')
-                if (line_number + 1) < (len(engine_schematics) - 1):
-                    lower_horizontal_check(char_number, engine_schematics[line_number+1])
+                if (line_number + 1) <= (len(engine_schematics) - 1):
+                    lower_horizontal_check(char_number, engine_schematics[line_number + 1])
 
 find_special_char(data)
-sum_of_product = sum(product_list)
-print(sum_of_product)
+# sum_of_product = sum(product_list)
+# print(sum_of_product)
