@@ -39,7 +39,7 @@ def lower_horizontal_check(symbol_index, lower_line_schematics):
     clean_line = lower_line_schematics.strip()
     line_length = len(clean_line)
     iterator = symbol_index - 1
-    num = lower_line_schematics[symbol_index] if lower_line_schematics[symbol_index].isdigit() else ''
+    num = lower_line_schematics[symbol_index] if lower_line_schematics[symbol_index].isdigit() else 
     while iterator >= 0:
         if lower_line_schematics[iterator].isdigit():
             num = lower_line_schematics[iterator] + num
@@ -54,14 +54,15 @@ def lower_horizontal_check(symbol_index, lower_line_schematics):
         elif iterator == symbol_index + 1:
             break
         iterator += 1
-    return(num)
+    return(int(num))
 
-    
+def upper_horizontal_check(symbol_index, lower_line_schematics):
+    pass
+
     #if line_length >= 
     #for n in lower_line_schematics[symbol_location-3:lower_line_schematics+3]:
         #if n.isdigit():
             #num += 
-
     # if lower_line_schematics[symbol_location-1].isdigit():
     #         if lower_line_schematics[symbol_location-2].isdigit():
     #             if lower_line_schematics[symbol_location-3].isdigit():
@@ -74,16 +75,17 @@ def lower_horizontal_check(symbol_index, lower_line_schematics):
     #else:
         #pass
 
-
 def find_special_char(engine_schematics):
+    global product_list
     for line_number, line in enumerate(engine_schematics):
         for char_number, char in enumerate(line):
             if char in special_chars:
-                right_horizontal_check(char_number, line)
-                left_horizontal_check(char_number, line)
+                product_list.append(right_horizontal_check(char_number, line))
+                product_list.append(left_horizontal_check(char_number, line))
                 if (line_number + 1) <= (len(engine_schematics) - 1):
-                    lower_horizontal_check(char_number, engine_schematics[line_number + 1])
+                    product_list.append(lower_horizontal_check(char_number, engine_schematics[line_number + 1]))
 
 find_special_char(data)
+print(product_list)
 # sum_of_product = sum(product_list)
 # print(sum_of_product)
