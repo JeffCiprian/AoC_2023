@@ -8,6 +8,8 @@ I have been unable to complete the part 2 challenge for any of the days.
 Difficulty Tier list:
 
 Easiest
+
+
 1
 4
 2
